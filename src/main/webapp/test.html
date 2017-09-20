@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Person CRUD - GNSMK
+    </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+</head>
+
+<body>
+    <div class="container well" id="adduser">
+        <form action="#" method="post" onsubmit="adduser()">
+            <div class="w3-third" style="margin:1%; width:40%">
+                <input type="text" name="name" ng-model="uname" class="form-control" placeholder="Person Name" autofocus required/>
+            </div>
+            <div class="w3-third" style="margin:1%; width:40%">
+                <input type="text" name="age" ng-model="uage" class="form-control" placeholder="Person Age" required/>
+            </div>
+            <div class="w3-third" style="margin:1%; width:5%">
+                <input type="submit" class="btn btn-primary btn-md" value="Add Person" />
+            </div>
+        </form>
+    </div>
+    <div class="container well" id="updateuser" hidden="hidden">
+        <form action="#" method="post" onsubmit="updateuser()">
+            <input type="hidden" name="id" value="{{person.id}}" />
+            <div class="w3-third" style="margin:1%; width:5%">
+                <p class="form-control">${newPerson.id}</p>
+            </div>
+            <div class="w3-third" style="margin:1%; width:37%">
+                <input type="text" name="name" id="newname" class="form-control" value="{{person.name}}" autofocus required/>
+            </div>
+            <div class="w3-third" style="margin:1%; width:37%">
+                <input type="text" name="age" id="newage" class="form-control" value="{{person.age}}" required/>
+            </div>
+            <div class="w3-third" style="margin:1%; width:5%">
+                <input type="submit" class="btn btn-primary btn-md" value="Update Person" />
+            </div>
+        </form>
+        </c:if>
+    </div>
+    <div class="container well">
+        <div ng-app="myApp" ng-controller="myCtrl">
+            <div ng-if="persontable">
+                <div ng-repeat="x in myWelcome" id="div{{x.id}}">
+                    <div class="w3-third" style="margin:1%; width:40%">
+                        <p class="form-control">{{x.name}}</p>
+                    </div>
+                    <div class="w3-third" style="margin:1%; width:40%">
+                        <p class="form-control">{{x.age}}</p>
+                    </div>
+                    <div class="w3-third" style="margin:1%; width:5%">
+                        <input type="button" onclick="edit(x.id)" value="Edit" class="btn btn-warning btn-md" />
+                    </div>
+                    <div class="w3-third" style="margin:1%; width:5%">
+                        <input type="button" ng-click="delete(x.id)" value="Delete" class="btn btn-danger btn-md" />
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div ng-if="listempty">
+                    <p style="text-align-last:center; color:grey">List Empty</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function ($scope, $http) {
+            $scope.delete = function (id) {
+                $http.get("http://10.100.8.134:8080/r/delete/" + id)
+                    .then(function (response) {
+                        if (response.data)
+                            $("#div" + id).remove();
+                        else {
+                            alert("someX went wrong, page refreshing");
+                            location.reload();
+                        }
+                    });
+            }
+            $scope.adduser = function () {
+                $http.post('/http://10.100.8.134:8080/r/add/', { name: $scope.uname, age: $scope.uage }).then($scope.uname = $scope.uage = "", alert("someX failure"));
+            }
+            $http.get("http://10.100.8.134:8080/r/getAll/")
+                .then(function (response) {
+                    if (response.data.length > 0) {
+                        $scope.listempty = false;
+                        $scope.persontable = true;
+                        $scope.myWelcome = response.data;
+                    } else {
+                        $scope.persontable = false;
+                        $scope.listempty = true;
+                    }
+                });
+        });
+    </script>
+
+</body>
+
+</html>
