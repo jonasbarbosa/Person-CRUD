@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -28,9 +29,9 @@ public class PersonController {
 		return "redirect:/";
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ModelAndView edit(@PathVariable("id") Integer id) {
-		ModelAndView model = new ModelAndView("personX.jsp");
+	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+	public ModelAndView edit(@PathVariable Integer id) {
+		ModelAndView model = new ModelAndView("../personX.jsp");
 		model.addObject("newPerson", repo.findOne(id));
 		model.addObject("list", repo.findAll());
 		return model;
@@ -44,7 +45,7 @@ public class PersonController {
 	}
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-	public String delete(@PathVariable("id") Integer id) {
+	public String delete(@PathVariable Integer id) {
 		repo.delete(id);
 		return "redirect:/";
 	}

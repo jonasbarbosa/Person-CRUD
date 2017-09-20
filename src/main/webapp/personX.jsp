@@ -57,7 +57,7 @@
                                 <p class="form-control">${x.age}</p>
                             </div>
                             <div class="w3-third" style="margin:1%; width:5%">
-                                <input type="button" onclick="location.href='/${x.id}';" value="Edit" class="btn btn-warning btn-md" />
+                                <input type="button" onclick="location.href='/edit/${x.id}';" value="Edit" class="btn btn-warning btn-md" />
                             </div>
                             <div class="w3-third" style="margin:1%; width:5%">
                                 <input type="button" onclick="location.href='/delete/${x.id}';" value="Delete" class="btn btn-danger btn-md" />
