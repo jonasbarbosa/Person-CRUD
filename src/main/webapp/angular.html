@@ -16,7 +16,7 @@
             $http.get("https://person-crud.herokuapp.com/r/getAll/").then(function (response) { $scope.listempty = (($scope.listpersons = response.data).length == 0); });
             $scope.delete = function (id) { $http.get("https://person-crud.herokuapp.com/r/delete/" + id).then($("#div" + id).remove()); }
             $scope.edit = function (id) { $http.get("https://person-crud.herokuapp.com/r/getOne/" + id).then(function (response) { $scope.isupdate = response; $scope.oldperson = response.data; }); }
-            $scope.update = function (id) { $http.post("https://person-crud.herokuapp.com/r/update", ({ name: $scope.oldperson.name, age: $scope.oldperson.age, id: $scope.oldperson.id }), function (response) { $scope.isupdate != response; location.reload(); }); }
+            $scope.update = function (id) { $http.post("https://person-crud.herokuapp.com/r/update", ({ name: $scope.oldperson.name, age: $scope.oldperson.age, id: $scope.oldperson.id }), function (response) { $scope.isupdate = false; location.reload(); }); }
             $scope.add = function () { $http.post("https://person-crud.herokuapp.com/r/add", ({ name: $scope.uname, age: $scope.uage }), location.reload()); }
         });
     </script>
