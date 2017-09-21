@@ -65,6 +65,12 @@
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
+			<!--for heroku db-->
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.4-1201-jdbc4</version>
+		</dependency>
+		<dependency>
 			<!-- custom html tags in jsp pages -->
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
