@@ -1,6 +1,5 @@
 package person;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,38 +10,18 @@ public class Person {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-
-	@Column
+	private Integer age;
 	private String name;
 
-	@Column
-	private Integer age;
+	public Integer getId() {return id;}
+	
+	public Integer getAge() {return age;}
 
-	public Integer getId() {
-		return id;
-	}
+	public String getName() {return name;}
+	
+	public void setId(Integer id) {this.id = id;}
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+	public void setAge(Integer age) {this.age = age;}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(Integer age) {
-		this.age = age;
-	}
-
-	public String toString() {
-		return "{" + this.id + ", " + this.name + ", " + this.age + "}";
-	}
+	public void setName(String name) {this.name = name;}
 }

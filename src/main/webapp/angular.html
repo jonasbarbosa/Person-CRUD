@@ -11,100 +11,41 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <script>
-        var app = angular.module('myApp', []);
-        app.controller('myCtrl', function ($scope, $http) {
+        angular.module('myApp', []).controller('myCtrl', function ($scope, $http) {
             $scope.isupdate = false;
-            $http.get("https://person-crud.herokuapp.com/r/getAll/")
-                .then(function (response) {
-                    if (response.data.length > 0) {
-                        $scope.listempty = false;
-                        $scope.persontable = true;
-                        $scope.myWelcome = response.data;
-                    } else {
-                        $scope.persontable = false;
-                        $scope.listempty = true;
-                    }
-                });
-            $scope.delete = function (id) {
-                $http.get("https://person-crud.herokuapp.com/r/delete/" + id)
-                    .then(function (response) {
-                        if (response.data)
-                            $("#div" + id).remove();
-                        else {
-                            alert("someX went wrong, page refreshing");
-                            location.reload();
-                        }
-                    });
-            }
-            $scope.edit = function (id) {
-                $scope.isupdate = true;
-                $http.get("https://person-crud.herokuapp.com/r/getOne/" + id)
-                    .then(function (response) { $scope.oldperson = response.data; });
-            }
-            $scope.update = function (id) {
-                $scope.isupdate = false;
-                var data = ({ name: $scope.oldperson.name, age: $scope.oldperson.age, id: $scope.oldperson.id });
-                $http.post("https://person-crud.herokuapp.com/r/update", data, location.reload());
-            }
-            $scope.add = function () {
-                var data = ({ name: $scope.uname, age: $scope.uage });
-                $http.post("https://person-crud.herokuapp.com/r/add", data, location.reload());
-            }
+            $http.get("https://person-crud.herokuapp.com/r/getAll/").then(function (response) { $scope.listempty = (($scope.listpersons = response.data).length == 0); });
+            $scope.delete = function (id) { $http.get("https://person-crud.herokuapp.com/r/delete/" + id).then($("#div" + id).remove()); }
+            $scope.edit = function (id) { $http.get("https://person-crud.herokuapp.com/r/getOne/" + id).then(function (response) { $scope.isupdate = response != null; $scope.oldperson = response.data; }); }
+            $scope.update = function (id) { $http.post("https://person-crud.herokuapp.com/r/update", ({ name: $scope.oldperson.name, age: $scope.oldperson.age, id: $scope.oldperson.id }), function (response) { $scope.isupdate = response == null; location.reload(); }); }
+            $scope.add = function () { $http.post("https://person-crud.herokuapp.com/r/add", ({ name: $scope.uname, age: $scope.uage }), location.reload()); }
         });
     </script>
 </head>
 
-<body>
-    <div ng-app="myApp" ng-controller="myCtrl">
-        <div class="container well" ng-hide="isupdate">
-            <form>
-                <div class="w3-third" style="margin:1%; width:40%">
-                    <input type="text" name="name" ng-model="uname" class="form-control" placeholder="Person Name" autofocus required/>
-                </div>
-                <div class="w3-third" style="margin:1%; width:40%">
-                    <input type="text" name="age" ng-model="uage" class="form-control" placeholder="Person Age" required/>
-                </div>
-                <div class="w3-third" style="margin:1%; width:5%">
-                    <input type="submit" ng-click="add()" class="btn btn-primary btn-md" value="Add Person" />
-                </div>
-            </form>
-        </div>
-        <div class="container well ng-hide" ng-show="isupdate">
-            <form>
-                <div class="w3-third" style="margin:1%; width:5%">
-                    <p class="form-control">{{oldperson.id}}</p>
-                </div>
-                <div class="w3-third" style="margin:1%; width:37%">
-                    <input type="text" name="name" ng-model="oldperson.name" class="form-control" autofocus required/>
-                </div>
-                <div class="w3-third" style="margin:1%; width:37%">
-                    <input type="text" name="age" ng-model="oldperson.age" class="form-control" required/>
-                </div>
-                <div class="w3-third" style="margin:1%; width:5%">
-                    <input type="submit" ng-click="update(oldperson.id)" class="btn btn-primary btn-md" value="Update Person" />
-                </div>
-            </form>
-        </div>
-        <div class="container well">
-            <div ng-show="listempty">
-                <p style="text-align-last:center; color:grey">List Empty</p>
-            </div>
-            <div ng-if="persontable">
-                <div ng-repeat="x in myWelcome" id="div{{x.id}}">
-                    <div class="w3-third" style="margin:1%; width:40%">
-                        <p class="form-control">{{x.name}}</p>
-                    </div>
-                    <div class="w3-third" style="margin:1%; width:40%">
-                        <p class="form-control">{{x.age}}</p>
-                    </div>
-                    <div class="w3-third" style="margin:1%; width:5%">
-                        <input type="button" ng-click="edit(x.id)" value="Edit" class="btn btn-warning btn-md" />
-                    </div>
-                    <div class="w3-third" style="margin:1%; width:5%">
-                        <input type="button" ng-click="delete(x.id)" value="Delete" class="btn btn-danger btn-md" />
-                    </div>
-                </div>
-            </div>
+<body ng-app="myApp" ng-controller="myCtrl">
+    <div class="container well" ng-hide="isupdate">
+        <input type="text" ng-model="uname" class="w3-third form-control" placeholder="Person Name" style="margin:1%; width:40%"
+            autofocus required/>
+        <input type="text" ng-model="uage" class="w3-third form-control" placeholder="Person Age" style="margin:1%; width:40%" required/>
+        <input type="button" ng-click="add()" class="w3-third btn btn-primary btn-md" style="margin:1%; width:5%" value="Add Person"
+        />
+    </div>
+    <div class="container well ng-hide" ng-show="isupdate">
+        <p class="form-control w3-third" style="margin:1%; width:5%">{{oldperson.id}}</p>
+        <input type="text" ng-model="oldperson.name" class="form-control w3-third" style="margin:1%; width:37%" autofocus required/>
+        <input type="text" ng-model="oldperson.age" class="form-control w3-third" style="margin:1%; width:37%" required/>
+        <input type="button" style="margin:1%; width:5%" ng-click="update(oldperson.id)" class="btn btn-primary btn-md w3-third"
+            value="Update Person" />
+    </div>
+    <div class="container well">
+        <p ng-show="listempty" style="text-align-last:center; color:grey">List Empty</p>
+        <div ng-hide="listempty" ng-repeat="x in listpersons" id="div{{x.id}}">
+            <p class="w3-third form-control" style="margin:1%; width:40%">{{x.name}}</p>
+            <p class="w3-third form-control" style="margin:1%; width:40%">{{x.age}}</p>
+            <input type="button" style="margin:1%; width:5%" ng-click="edit(x.id)" value="Edit" class="btn btn-warning btn-md w3-third"
+            />
+            <input type="button" style="margin:1%; width:5%" ng-click="delete(x.id)" value="Delete" class="btn btn-danger btn-md w3-third"
+            />
         </div>
     </div>
 </body>
