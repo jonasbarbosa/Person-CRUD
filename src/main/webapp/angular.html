@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -9,72 +10,103 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-</head>
-
-<body>
-    <div class="container well">
-        <c:if test="${empty newPerson}">
-            <form:form action="/add" method="post">
-                <div class="w3-third" style="margin:1%; width:40%">
-                    <input type="text" name="name" class="form-control" placeholder="Person Name" autofocus required/>
-                </div>
-                <div class="w3-third" style="margin:1%; width:40%">
-                    <input type="text" name="age" class="form-control" placeholder="Person Age" required/>
-                </div>
-                <div class="w3-third" style="margin:1%; width:5%">
-                    <input type="submit" class="btn btn-primary btn-md" value="Add Person" />
-                </div>
-            </form:form>
-        </c:if>
-        <c:if test="${!empty newPerson}">
-            <form:form action="/update" method="post">
-                <input type="hidden" name="id" value="${newPerson.id}" />
-                <div class="w3-third" style="margin:1%; width:5%">
-                    <p class="form-control">${newPerson.id}</p>
-                </div>
-                <div class="w3-third" style="margin:1%; width:37%">
-                    <input type="text" name="name" class="form-control" value="${newPerson.name}" autofocus required/>
-                </div>
-                <div class="w3-third" style="margin:1%; width:37%">
-                    <input type="text" name="age" class="form-control" value="${newPerson.age}" required/>
-                </div>
-                <div class="w3-third" style="margin:1%; width:5%">
-                    <input type="submit" class="btn btn-primary btn-md" value="Update Person" />
-                </div>
-            </form:form>
-        </c:if>
-    </div>
-
-    <div class="container well">
-        <c:if test="${!empty list}">
-            <div ng-repeat="x in myWelcome">
-                <div class="w3-third" style="margin:1%; width:40%">
-                    <p class="form-control">{{x.name}}</p>
-                </div>
-                <div class="w3-third" style="margin:1%; width:40%">
-                    <p class="form-control">{{x.age}}</p>
-                </div>
-                <div class="w3-third" style="margin:1%; width:5%">
-                    <input type="button" onclick="location.href='/edit/${x.id}';" value="Edit" class="btn btn-warning btn-md" />
-                </div>
-                <div class="w3-third" style="margin:1%; width:5%">
-                    <input type="button" onclick="location.href='/delete/${x.id}';" value="Delete" class="btn btn-danger btn-md" />
-                </div>
-            </div>
-        </c:if>
-        <c:if test="${empty list}">
-            <p style="text-align-last:center; color:grey">List Empty</p>
-        </c:if>
-    </div>
     <script>
         var app = angular.module('myApp', []);
         app.controller('myCtrl', function ($scope, $http) {
+            $scope.isupdate = false;
             $http.get("http://10.100.8.134:8080/r/getAll/")
                 .then(function (response) {
-                    $scope.myWelcome = response.data;
+                    if (response.data.length > 0) {
+                        $scope.listempty = false;
+                        $scope.persontable = true;
+                        $scope.myWelcome = response.data;
+                    } else {
+                        $scope.persontable = false;
+                        $scope.listempty = true;
+                    }
                 });
+            $scope.delete = function (id) {
+                $http.get("http://10.100.8.134:8080/r/delete/" + id)
+                    .then(function (response) {
+                        if (response.data)
+                            $("#div" + id).remove();
+                        else {
+                            alert("someX went wrong, page refreshing");
+                            location.reload();
+                        }
+                    });
+            }
+            $scope.edit = function (id) {
+                $scope.isupdate = true;
+                $http.get("http://10.100.8.134:8080/r/getOne/" + id)
+                    .then(function (response) { $scope.oldperson = response.data; });
+            }
+            $scope.update = function (id) {
+                $scope.isupdate = false;
+                var data = ({ name: $scope.oldperson.name, age: $scope.oldperson.age, id: $scope.oldperson.id });
+                $http.post("http://10.100.8.134:8080/r/update", data, location.reload());
+            }
+            $scope.add = function () {
+                var data = ({ name: $scope.uname, age: $scope.uage });
+                $http.post("http://10.100.8.134:8080/r/add", data, location.reload());
+            }
         });
     </script>
+</head>
+
+<body>
+    <div ng-app="myApp" ng-controller="myCtrl">
+        <div class="container well" ng-hide="isupdate">
+            <form>
+                <div class="w3-third" style="margin:1%; width:40%">
+                    <input type="text" name="name" ng-model="uname" class="form-control" placeholder="Person Name" autofocus required/>
+                </div>
+                <div class="w3-third" style="margin:1%; width:40%">
+                    <input type="text" name="age" ng-model="uage" class="form-control" placeholder="Person Age" required/>
+                </div>
+                <div class="w3-third" style="margin:1%; width:5%">
+                    <input type="submit" ng-click="add()" class="btn btn-primary btn-md" value="Add Person" />
+                </div>
+            </form>
+        </div>
+        <div class="container well ng-hide" ng-show="isupdate">
+            <form>
+                <div class="w3-third" style="margin:1%; width:5%">
+                    <p class="form-control">{{oldperson.id}}</p>
+                </div>
+                <div class="w3-third" style="margin:1%; width:37%">
+                    <input type="text" name="name" ng-model="oldperson.name" class="form-control" autofocus required/>
+                </div>
+                <div class="w3-third" style="margin:1%; width:37%">
+                    <input type="text" name="age" ng-model="oldperson.age" class="form-control" required/>
+                </div>
+                <div class="w3-third" style="margin:1%; width:5%">
+                    <input type="submit" ng-click="update(oldperson.id)" class="btn btn-primary btn-md" value="Update Person" />
+                </div>
+            </form>
+        </div>
+        <div class="container well">
+            <div ng-if="listempty" class="ng-hide">
+                <p style="text-align-last:center; color:grey">List Empty</p>
+            </div>
+            <div ng-if="persontable">
+                <div ng-repeat="x in myWelcome" id="div{{x.id}}">
+                    <div class="w3-third" style="margin:1%; width:40%">
+                        <p class="form-control">{{x.name}}</p>
+                    </div>
+                    <div class="w3-third" style="margin:1%; width:40%">
+                        <p class="form-control">{{x.age}}</p>
+                    </div>
+                    <div class="w3-third" style="margin:1%; width:5%">
+                        <input type="button" ng-click="edit(x.id)" value="Edit" class="btn btn-warning btn-md" />
+                    </div>
+                    <div class="w3-third" style="margin:1%; width:5%">
+                        <input type="button" ng-click="delete(x.id)" value="Delete" class="btn btn-danger btn-md" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

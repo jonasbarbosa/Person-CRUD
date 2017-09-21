@@ -41,4 +41,8 @@ public class Person {
 	public void setAge(Integer age) {
 		this.age = age;
 	}
+
+	public String toString() {
+		return "{" + this.id + ", " + this.name + ", " + this.age + "}";
+	}
 }

@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
 import java.util.List;
 
 @RestController
@@ -16,28 +18,36 @@ public class PersonRestController {
 	@Autowired
 	private CustomerRepository repo;
 
+	@RequestMapping(value = "/r", method = RequestMethod.GET)
+	public ModelAndView hello() {
+		return new ModelAndView("angular.html");
+	}
+
 	@RequestMapping(value = "/r/getAll", method = RequestMethod.GET)
-	public synchronized List<Person> getAll() {
+	public List<Person> getAll() {
 		return repo.findAll();
 	}
 
+	@RequestMapping(value = "/r/getOne/{id}", method = RequestMethod.GET)
+	public Person getOne(@PathVariable Integer id) {
+		return repo.findOne(id);
+	}
+
 	@RequestMapping(value = "/r/add", method = RequestMethod.POST)
-	public synchronized boolean additem(@RequestBody Person p) {
+	public boolean additem(@RequestBody Person p) {
+		System.out.println(p.getName() + "---" + p.getAge() + "---" + p.getId());
 		return (repo.saveAndFlush(p) != null);
 	}
 
 	@RequestMapping(value = "/r/update", method = RequestMethod.POST)
 	public boolean update(@RequestBody Person p) {
+		System.out.println(p);
 		return (p.getName() != null && p.getAge() != 0 && p.getId() != 0 && repo.saveAndFlush(p) != null);
 	}
 
 	@RequestMapping(value = "/r/delete/{id}", method = RequestMethod.GET)
 	public boolean delete(@PathVariable Integer id) {
-		if (repo.exists(id)) {
-			repo.delete(id);
-			return true;
-		} else {
-			return false;
-		}
+		repo.delete(id);
+		return !repo.exists(id);
 	}
 }
