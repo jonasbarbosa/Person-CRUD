@@ -28,7 +28,7 @@
 						<div class="form-inline">
                             <input style="margin:1%; width:35%" type="text" name="name" class="form-control" value="${newPerson.name}" autofocus required/>
                             <input style="margin:1%; width:35%" type="text" name="age" class="form-control" value="${newPerson.age}" required/>
-                            <input style="margin:1%; width:35%" type="submit" class="btn btn-primary btn-md" value="Update Person" />
+                            <input style="margin:1%; width:23%" type="submit" class="btn btn-primary btn-md" value="Update Person" />
 						</div>
 						</form:form>
                     </c:if>
@@ -38,10 +38,10 @@
                     <c:if test="${!empty list}">
                         <c:forEach items="${list}" var="x">
 						<div class="form-inline">
-                            <p style="margin:1%; width:40%" class="form-control">${x.name}</p>
-                            <p style="margin:1%; width:40%" class="form-control">${x.age}</p>
-                            <input style="margin:1%; width:40%" type="button" onclick="location.href='/edit/${x.id}';" value="Edit" class="btn btn-warning btn-md" />
-                            <input style="margin:1%; width:40%" type="button" onclick="location.href='/delete/${x.id}';" value="Delete" class="btn btn-danger btn-md" />
+                            <p style="margin:1%; width:35%" class="form-control">${x.name}</p>
+                            <p style="margin:1%; width:35%" class="form-control">${x.age}</p>
+                            <input style="margin:1%; width:10%" type="button" onclick="location.href='/edit/${x.id}';" value="Edit" class="btn btn-warning btn-md" />
+                            <input style="margin:1%; width:10%" type="button" onclick="location.href='/delete/${x.id}';" value="Delete" class="btn btn-danger btn-md" />
                         </div>
                         </c:forEach>
                     </c:if>
