@@ -14,18 +14,19 @@
 <body>
     <div ng-app="myApp" ng-controller="myCtrl">
         <div class="container well" ng-hide="isupdate">
-            <input type="text" ng-model="uname" class="form-control" placeholder="Person Name" style="margin:1%; width:35%"
-                autofocus required/>
-            <input type="text" ng-model="uage" class="form-control" placeholder="Person Age" style="margin:1%; width:35%" required/>
-            <input type="button" ng-click="add()" class="btn btn-primary btn-md" style="margin:1%; width:10%" value="Add Person"
-            />
+			<div class="form-inline">
+				<input type="text" ng-model="uname" class="form-control" placeholder="Person Name" style="margin:1%; width:40%" autofocus required/>
+				<input type="text" ng-model="uage" class="form-control" placeholder="Person Age" style="margin:1%; width:40%" required/>
+				<input type="button" ng-click="add()" class="btn btn-primary btn-md" style="margin:1%; width:10%" value="Add Person"/>
+			</div>
         </div>
         <div class="container well ng-hide" ng-show="isupdate">
-            <p class="form-control" style="margin:1%; width:10%">{{oldperson.id}}</p>
-            <input type="text" ng-model="oldperson.name" class="form-control" style="margin:1%; width:35%" autofocus required/>
-            <input type="text" ng-model="oldperson.age" class="form-control" style="margin:1%; width:35%" required/>
-            <input type="button" style="margin:1%; width:10%" ng-click="update(oldperson.id)" class="btn btn-primary btn-md"
-                value="Update Person" />
+			<div class="form-inline">
+				<p class="form-control" style="margin:1%; width:10%">{{oldperson.id}}</p>
+				<input type="text" ng-model="oldperson.name" class="form-control" style="margin:1%; width:40%" autofocus required/>
+				<input type="text" ng-model="oldperson.age" class="form-control" style="margin:1%; width:40%" required/>
+				<input type="button" style="margin:1%; width:10%" ng-click="update(oldperson.id)" class="btn btn-primary btn-md" value="Update Person" />
+			</div>
         </div>
         <div class="container well">
             <div ng-show="listempty">
