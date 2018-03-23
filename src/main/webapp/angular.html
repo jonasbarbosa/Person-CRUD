@@ -14,17 +14,17 @@
 <body>
     <div ng-app="myApp" ng-controller="myCtrl">
         <div class="container well" ng-hide="isupdate">
-            <input type="text" ng-model="uname" class="form-control" placeholder="Person Name" style="margin:1%; width:40%"
+            <input type="text" ng-model="uname" class="form-control" placeholder="Person Name" style="margin:1%; width:33%"
                 autofocus required/>
-            <input type="text" ng-model="uage" class="form-control" placeholder="Person Age" style="margin:1%; width:40%" required/>
-            <input type="button" ng-click="add()" class="btn btn-primary btn-md" style="margin:1%; width:5%" value="Add Person"
+            <input type="text" ng-model="uage" class="form-control" placeholder="Person Age" style="margin:1%; width:33%" required/>
+            <input type="button" ng-click="add()" class="btn btn-primary btn-md" style="margin:1%; width:15%" value="Add Person"
             />
         </div>
         <div class="container well ng-hide" ng-show="isupdate">
             <p class="form-control" style="margin:1%; width:5%">{{oldperson.id}}</p>
-            <input type="text" ng-model="oldperson.name" class="form-control" style="margin:1%; width:37%" autofocus required/>
-            <input type="text" ng-model="oldperson.age" class="form-control" style="margin:1%; width:37%" required/>
-            <input type="button" style="margin:1%; width:5%" ng-click="update(oldperson.id)" class="btn btn-primary btn-md"
+            <input type="text" ng-model="oldperson.name" class="form-control" style="margin:1%; width:33%" autofocus required/>
+            <input type="text" ng-model="oldperson.age" class="form-control" style="margin:1%; width:33%" required/>
+            <input type="button" style="margin:1%; width:15%" ng-click="update(oldperson.id)" class="btn btn-primary btn-md"
                 value="Update Person" />
         </div>
         <div class="container well">
@@ -32,11 +32,11 @@
                 <p style="text-align-last:center; color:grey">List Empty</p>
             </div>
             <div ng-hide="listempty" ng-repeat="x in listpersons" id="div{{x.id}}">
-                <p class=" form-control" style="margin:1%; width:40%">{{x.name}}</p>
-                <p class=" form-control" style="margin:1%; width:40%">{{x.age}}</p>
-                <input type="button" style="margin:1%; width:5%" ng-click="edit(x.id)" value="Edit" class="btn btn-warning btn-md"
+                <p class=" form-control" style="margin:1%; width:33%">{{x.name}}</p>
+                <p class=" form-control" style="margin:1%; width:33%">{{x.age}}</p>
+                <input type="button" style="margin:1%; width:15%" ng-click="edit(x.id)" value="Edit" class="btn btn-warning btn-md"
                 />
-                <input type="button" style="margin:1%; width:5%" ng-click="delete(x.id)" value="Delete" class="btn btn-danger btn-md"
+                <input type="button" style="margin:1%; width:15%" ng-click="delete(x.id)" value="Delete" class="btn btn-danger btn-md"
                 />
             </div>
         </div>
