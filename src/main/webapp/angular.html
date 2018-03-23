@@ -6,7 +6,6 @@
         Person CRUD - GNSMK
     </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
@@ -15,17 +14,17 @@
 <body>
     <div ng-app="myApp" ng-controller="myCtrl">
         <div class="container well" ng-hide="isupdate">
-            <input type="text" ng-model="uname" class="w3-third form-control" placeholder="Person Name" style="margin:1%; width:40%"
+            <input type="text" ng-model="uname" class="form-control" placeholder="Person Name" style="margin:1%; width:40%"
                 autofocus required/>
-            <input type="text" ng-model="uage" class="w3-third form-control" placeholder="Person Age" style="margin:1%; width:40%" required/>
-            <input type="button" ng-click="add()" class="w3-third btn btn-primary btn-md" style="margin:1%; width:5%" value="Add Person"
+            <input type="text" ng-model="uage" class="form-control" placeholder="Person Age" style="margin:1%; width:40%" required/>
+            <input type="button" ng-click="add()" class="btn btn-primary btn-md" style="margin:1%; width:5%" value="Add Person"
             />
         </div>
         <div class="container well ng-hide" ng-show="isupdate">
-            <p class="form-control w3-third" style="margin:1%; width:5%">{{oldperson.id}}</p>
-            <input type="text" ng-model="oldperson.name" class="form-control w3-third" style="margin:1%; width:37%" autofocus required/>
-            <input type="text" ng-model="oldperson.age" class="form-control w3-third" style="margin:1%; width:37%" required/>
-            <input type="button" style="margin:1%; width:5%" ng-click="update(oldperson.id)" class="btn btn-primary btn-md w3-third"
+            <p class="form-control" style="margin:1%; width:5%">{{oldperson.id}}</p>
+            <input type="text" ng-model="oldperson.name" class="form-control" style="margin:1%; width:37%" autofocus required/>
+            <input type="text" ng-model="oldperson.age" class="form-control" style="margin:1%; width:37%" required/>
+            <input type="button" style="margin:1%; width:5%" ng-click="update(oldperson.id)" class="btn btn-primary btn-md"
                 value="Update Person" />
         </div>
         <div class="container well">
@@ -33,11 +32,11 @@
                 <p style="text-align-last:center; color:grey">List Empty</p>
             </div>
             <div ng-hide="listempty" ng-repeat="x in listpersons" id="div{{x.id}}">
-                <p class="w3-third form-control" style="margin:1%; width:40%">{{x.name}}</p>
-                <p class="w3-third form-control" style="margin:1%; width:40%">{{x.age}}</p>
-                <input type="button" style="margin:1%; width:5%" ng-click="edit(x.id)" value="Edit" class="btn btn-warning btn-md w3-third"
+                <p class=" form-control" style="margin:1%; width:40%">{{x.name}}</p>
+                <p class=" form-control" style="margin:1%; width:40%">{{x.age}}</p>
+                <input type="button" style="margin:1%; width:5%" ng-click="edit(x.id)" value="Edit" class="btn btn-warning btn-md"
                 />
-                <input type="button" style="margin:1%; width:5%" ng-click="delete(x.id)" value="Delete" class="btn btn-danger btn-md w3-third"
+                <input type="button" style="margin:1%; width:5%" ng-click="delete(x.id)" value="Delete" class="btn btn-danger btn-md"
                 />
             </div>
         </div>
