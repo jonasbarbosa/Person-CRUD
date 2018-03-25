@@ -26,7 +26,7 @@
                     <c:if test="${!empty newPerson}">
                         <form:form action="/update" method="post">
                             <div class="form-inline">
-                                <input hidden value=${newPerson.Id} />
+                                <input hidden value=${newPerson.id} />
                                 <input style="width:35%; margin: 1%;" type="text" name="name" class="form-control" value="${newPerson.name}" autofocus required/>
                                 <input style="width:35%; margin: 1%;" type="text" name="age" class="form-control" value="${newPerson.age}" required/>
                                 <input style="width:23%; margin: 1%;" type="submit" class="btn btn-primary btn-md" value="Update Person" />
@@ -39,7 +39,7 @@
                     <c:if test="${!empty list}">
                         <c:forEach items="${list}" var="x">
                             <div class="form-inline">
-                                <input hidden value=${x.Id} />
+                                <input hidden value=${x.id} />
                                 <p style="width:35%; margin: 1%;" class="form-control">${x.name}</p>
                                 <p style="width:35%; margin: 1%;" class="form-control">${x.age}</p>
                                 <input style="width:10%; margin: 1%;" type="button" onclick="location.href='/edit/${x.id}';" value="Edit" class="btn btn-warning btn-md"
