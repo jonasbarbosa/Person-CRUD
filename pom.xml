@@ -65,7 +65,7 @@
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
-			<!--for heroku db-->
+			<!--for heroku's postgre db-->
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>9.4-1201-jdbc4</version>
@@ -86,12 +86,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<!-- to properly run with JVM -->
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-compiler-plugin</artifactId>
-			<version>3.7.0</version>
 		</dependency>
 	</dependencies>
 	<build>
