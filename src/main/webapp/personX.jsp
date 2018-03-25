@@ -24,15 +24,15 @@
                         </form:form>
                     </c:if>
                     <c:if test="${!empty newPerson}">
+                        <div class="form-inline"></div>
                         <form:form action="/update" method="post">
-                            <div class="form-inline">
-                                <input hidden value=${newPerson.id} />
-                                <input style="width:35%; margin: 1%;" type="text" name="name" class="form-control" value="${newPerson.name}" autofocus required/>
-                                <input style="width:35%; margin: 1%;" type="text" name="age" class="form-control" value="${newPerson.age}" required/>
-                                <input style="width:23%; margin: 1%;" type="submit" class="btn btn-primary btn-md" value="Update Person" />
-                            </div>
+                            <input type="hidden" value=${newPerson.id} />
+                            <input style="width:35%; margin: 1%;" type="text" name="name" class="form-control" value="${newPerson.name}" autofocus required/>
+                            <input style="width:35%; margin: 1%;" type="text" name="age" class="form-control" value="${newPerson.age}" required/>
+                            <input style="width:23%; margin: 1%;" type="submit" class="btn btn-primary btn-md" value="Update Person" />
                         </form:form>
-                    </c:if>
+                </div>
+                </c:if>
                 </div>
 
                 <div class="container well">
