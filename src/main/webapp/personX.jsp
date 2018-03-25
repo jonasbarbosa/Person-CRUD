@@ -19,7 +19,7 @@
                             <div class="form-inline">
                                 <input style="width:35%; margin: 1%;" type="text" name="name" class="form-control" placeholder="Person Name" autofocus required/>
                                 <input style="width:35%; margin: 1%;" type="text" name="age" class="form-control" placeholder="Person Age" required/>
-                                <input style="width:23%; margin: 1%;" type="submit" class="btn btn-primary btn-md" value="Add Person" />
+                                <input style="width:23%; margin: 1%;" type="submit" class="btn btn-success btn-md" value="Add Person" />
                             </div>
                         </form:form>
                     </c:if>
