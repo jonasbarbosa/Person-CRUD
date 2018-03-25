@@ -40,9 +40,9 @@
                             <div class="form-inline">
                                 <p style="width:35%; margin: 1px;" class="form-control">${x.name}</p>
                                 <p style="width:35%; margin: 1px;" class="form-control">${x.age}</p>
-                                <input style="width:15%; margin: 1px;" type="button" onclick="location.href='/edit/${x.id}';" value="Edit" class="btn btn-warning btn-md"
+                                <input style="width:10%; margin: 1px;" type="button" onclick="location.href='/edit/${x.id}';" value="Edit" class="btn btn-warning btn-md"
                                 />
-                                <input style="width:15%; margin: 1px;" type="button" onclick="location.href='/delete/${x.id}';" value="Delete" class="btn btn-danger btn-md"
+                                <input style="width:10%; margin: 1px;" type="button" onclick="location.href='/delete/${x.id}';" value="Delete" class="btn btn-danger btn-md"
                                 />
                             </div>
                         </c:forEach>
