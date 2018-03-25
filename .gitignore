@@ -1,0 +1,13 @@
+.classpath
+.project
+.settings/org.eclipse.core.resources.prefs
+.settings/org.eclipse.jdt.core.prefs
+.settings/org.eclipse.m2e.core.prefs
+target/classes/person/CustomerRepository.class
+target/classes/person/Person.class
+target/classes/person/PersonApplication.class
+target/classes/person/PersonController.class
+target/classes/person/PersonRestController.class
+target/classes/person/SwaggerConfig.class
+target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
