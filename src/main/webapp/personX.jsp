@@ -39,6 +39,7 @@
                     <c:if test="${!empty list}">
                         <c:forEach items="${list}" var="x">
                             <div class="form-inline">
+                                <input hidden value=${x.Id} />
                                 <p style="width:35%; margin: 1%;" class="form-control">${x.name}</p>
                                 <p style="width:35%; margin: 1%;" class="form-control">${x.age}</p>
                                 <input style="width:10%; margin: 1%;" type="button" onclick="location.href='/edit/${x.id}';" value="Edit" class="btn btn-warning btn-md"
