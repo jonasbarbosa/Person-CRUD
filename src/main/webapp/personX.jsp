@@ -41,10 +41,8 @@
                             <div class="form-inline">
                                 <p style="width:35%; margin: 1%;" class="form-control">${x.name}</p>
                                 <p style="width:35%; margin: 1%;" class="form-control">${x.age}</p>
-                                <button style="width:10%; margin: 1%;" onclick="location.href='/edit/${x.id}';" value="Edit" class="btn btn-warning btn-md"
-                                />
-                                <button style="width:10%; margin: 1%;" onclick="location.href='/delete/${x.id}';" value="Delete" class="btn btn-danger btn-md"
-                                />
+                                <button style="width:10%; margin: 1%;" onclick="location.href='/edit/${x.id}';" class="btn btn-warning btn-md">Edit</button>
+                                <button style="width:10%; margin: 1%;" onclick="location.href='/delete/${x.id}';" class="btn btn-danger btn-md">Delete</button>
                             </div>
                         </c:forEach>
                     </c:if>
