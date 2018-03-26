@@ -26,7 +26,7 @@
                     <c:if test="${!empty newPerson}">
                         <div class="form-inline"></div>
                         <form:form action="/update" method="post">
-                            <input type="hidden" value=${newPerson.id} />
+                            <input type="hidden" name="id" value=${newPerson.id} />
                             <input style="width:35%; margin: 1%;" type="text" name="name" class="form-control" value="${newPerson.name}" autofocus required/>
                             <input style="width:35%; margin: 1%;" type="text" name="age" class="form-control" value="${newPerson.age}" required/>
                             <input style="width:22%; margin: 1%;" type="submit" class="btn btn-primary btn-md" value="Update Person" />
