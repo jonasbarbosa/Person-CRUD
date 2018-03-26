@@ -29,7 +29,7 @@
                                 <input type="hidden" name="id" value=${newPerson.id} />
                                 <input style="width:35%; margin: 1%;" type="text" name="name" class="form-control" value="${newPerson.name}" autofocus required/>
                                 <input style="width:35%; margin: 1%;" type="text" name="age" class="form-control" value="${newPerson.age}" required/>
-                                <input style="width:22%; margin: 1%;" type="submit" class="btn btn-primary btn-md" value="Update Person" />
+                                <input style="width:23%; margin: 1%;" type="submit" class="btn btn-primary btn-md" value="Update Person" />
                             </div>
                         </form:form>
                     </c:if>
