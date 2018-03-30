@@ -51,7 +51,7 @@
                         </c:forEach>
                     </c:if>
                     <c:if test="${empty list}">
-                        <p style="text-align-last:center; color:grey">List Empty</p>
+                        <p class="form-control col" style="text-align-last:center; color:grey">List Empty</p>
                     </c:if>
                 </div>
             </body>
