@@ -5,7 +5,7 @@
     <title>
         Person CRUD - GNSMK
     </title>
-    
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
@@ -15,7 +15,8 @@
         angular.module('myApp', []).controller('myCtrl', function ($scope, $http) {
             $scope.isupdate = false;
             $http.get("/r/getAll/").then(function (response) {
-                $scope.listempty = (($scope.listpersons = response.data).length == 0);
+                $scope.listpersons = response.data;
+                $scope.listempty = ($scope.listpersons.length == 0);
             });
             $scope.add = function () {
                 $http.post("/r/add", ({
@@ -43,20 +44,19 @@
                 $http.get("/r/delete/" + id).then(location.reload());
             }
         });
-</script>
+    </script>
 </head>
 
 <body>
     <div ng-app="myApp" ng-controller="myCtrl">
         <div class="container well">
             <div class="row" ng-hide="isupdate">
-                <input type="text" ng-model="uname" class="form-control col-4" placeholder="Person Name" style="margin:1%" autofocus
-                    required/>
+                <input type="text" ng-model="uname" class="form-control col-4" placeholder="Person Name" style="margin:1%" autofocus required/>
                 <input type="text" ng-model="uage" class="form-control col-4" placeholder="Person Age" style="margin:1%" required/>
                 <input type="button" ng-click="add()" class="btn btn-success btn-md col" style="margin:1%" value="Add Person" />
             </div>
         </div>
-        
+
         <div class="container well">
             <div class="row" ng-show="isupdate">
                 <input type="text" ng-model="oldperson.name" class="form-control col-4" style="margin:1%" autofocus required/>
