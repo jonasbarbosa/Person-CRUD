@@ -41,8 +41,8 @@
                     <c:if test="${!empty list}">
                         <c:forEach items="${list}" var="x">
                             <div class="row">
-                                <p style="margin: 1%" class="col-4">${x.name}</p>
-                                <p style="margin: 1%" class="col-4">${x.age}</p>
+                                <p style="margin: 1%" class="form-control col-4">${x.name}</p>
+                                <p style="margin: 1%" class="form-control col-4">${x.age}</p>
                                 <button style="margin: 1%" onclick="location.href='/edit/${x.id}';" class="btn btn-warning btn-md col">Edit</button>
                                 <button style="margin: 1%" onclick="location.href='/delete/${x.id}';" class="btn btn-danger btn-md col">Delete</button>
                             </div>
