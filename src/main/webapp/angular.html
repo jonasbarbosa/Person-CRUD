@@ -5,75 +5,80 @@
     <title>
         Person CRUD - GNSMK
     </title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script>
+        angular.module('myApp', []).controller('myCtrl', function ($scope, $http) {
+            $scope.isupdate = false;
+            $http.get("/r/getAll/").then(function (response) {
+                $scope.listempty = (($scope.listpersons = response.data).length == 0);
+            });
+            $scope.add = function () {
+                $http.post("/r/add", ({
+                    name: $scope.uname, age: $scope.uage
+                }));
+                location.reload();
+            }
+            $scope.edit = function (id) {
+                $http.get("/r/getOne/" + id).then(function (response) {
+                    $scope.isupdate = response;
+                    $scope.oldperson = response.data;
+                });
+            }
+            $scope.update = function (id) {
+                $http.post("/r/update", ({
+                    name: $scope.oldperson.name,
+                    age: $scope.oldperson.age,
+                    id: $scope.oldperson.id
+                }), function (response) {
+                    $scope.isupdate = false;
+                });
+                location.reload();
+            }
+            $scope.delete = function (id) {
+                $http.get("/r/delete/" + id).then(location.reload());
+            }
+        });
+</script>
 </head>
 
 <body>
     <div ng-app="myApp" ng-controller="myCtrl">
-        <div class="container well" ng-hide="isupdate">
-            <div class="form-inline">
-                <input type="text" ng-model="uname" class="form-control" placeholder="Person Name" style="margin:1%; width:35%" autofocus
+        <div class="container well">
+            <div class="row" ng-hide="isupdate">
+                <input type="text" ng-model="uname" class="form-control col-4" placeholder="Person Name" style="margin:1%" autofocus
                     required/>
-                <input type="text" ng-model="uage" class="form-control" placeholder="Person Age" style="margin:1%; width:35%" required/>
-                <input type="button" ng-click="add()" class="btn btn-success btn-md" style="margin:1%; width:23%" value="Add Person" />
+                <input type="text" ng-model="uage" class="form-control col-4" placeholder="Person Age" style="margin:1%" required/>
+                <input type="button" ng-click="add()" class="btn btn-success btn-md col" style="margin:1%" value="Add Person" />
             </div>
         </div>
-        <div class="container well ng-hide" ng-show="isupdate">
-            <div class="form-inline">
-                <input type="text" ng-model="oldperson.name" class="form-control" style="margin:1%; width:35%" autofocus required/>
-                <input type="text" ng-model="oldperson.age" class="form-control" style="margin:1%; width:35%" required/>
-                <input type="button" style="margin:1%; width:23%" ng-click="update(oldperson.id)" class="btn btn-primary btn-md" value="Update Person"
+        
+        <div class="container well">
+            <div class="row" ng-show="isupdate">
+                <input type="text" ng-model="oldperson.name" class="form-control col-4" style="margin:1%" autofocus required/>
+                <input type="text" ng-model="oldperson.age" class="form-control col-4" style="margin:1%" required/>
+                <input type="button" style="margin:1%" ng-click="update(oldperson.id)" class="btn btn-primary btn-md col" value="Update Person"
                 />
             </div>
         </div>
+        <hr/>
         <div class="container well">
-            <div ng-show="listempty">
-                <p style="text-align-last:center; color:grey">List Empty</p>
+            <div class="row" ng-show="listempty">
+                <p class="form-control col" style="text-align-last:center; color:grey">List Empty</p>
             </div>
-            <div class="form-inline" ng-hide="listempty" ng-repeat="x in listpersons" id="div{{x.id}}">
-                <p class=" form-control" style="margin:1%; width:35%">{{x.name}}</p>
-                <p class=" form-control" style="margin:1%; width:35%">{{x.age}}</p>
-                <input type="button" style="margin:1%; width:10%" ng-click="edit(x.id)" value="Edit" class="btn btn-warning btn-md" />
-                <input type="button" style="margin:1%; width:10%" ng-click="delete(x.id)" value="Delete" class="btn btn-danger btn-md" />
+        </div>
+        <div class="container well">
+            <div class="row" ng-hide="listempty" ng-repeat="x in listpersons" id="div{{x.id}}">
+                <p class=" form-control col-4" style="margin:1%">{{x.name}}</p>
+                <p class=" form-control col-4" style="margin:1%">{{x.age}}</p>
+                <input type="button" style="margin:1%" ng-click="edit(x.id)" value="Edit" class="btn btn-warning btn-md col" />
+                <input type="button" style="margin:1%" ng-click="delete(x.id)" value="Delete" class="btn btn-danger btn-md col" />
             </div>
         </div>
     </div>
 </body>
-<script>
-    angular.module('myApp', []).controller('myCtrl', function ($scope, $http) {
-        $scope.isupdate = false;
-        $http.get("/r/getAll/").then(function (response) {
-            $scope.listempty = (($scope.listpersons = response.data).length == 0);
-        });
-        $scope.add = function () {
-            $http.post("/r/add", ({
-                name: $scope.uname, age: $scope.uage
-            }));
-            location.reload();
-        }
-        $scope.edit = function (id) {
-            $http.get("/r/getOne/" + id).then(function (response) {
-                $scope.isupdate = response;
-                $scope.oldperson = response.data;
-            });
-        }
-        $scope.update = function (id) {
-            $http.post("/r/update", ({
-                name: $scope.oldperson.name,
-                age: $scope.oldperson.age,
-                id: $scope.oldperson.id
-            }), function (response) {
-                $scope.isupdate = false;
-            });
-            location.reload();
-        }
-        $scope.delete = function (id) {
-            $http.get("/r/delete/" + id).then(location.reload());
-        }
-    });
-</script>
-
 </html>
