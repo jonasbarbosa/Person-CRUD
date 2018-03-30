@@ -48,7 +48,7 @@
 
 <body>
     <div ng-app="myApp" ng-controller="myCtrl">
-        <div class="well">
+        <div class="container well">
             <div class="row" ng-hide="isupdate">
                 <input type="text" ng-model="uname" class="form-control col-4" placeholder="Person Name" style="margin:1%" autofocus
                     required/>
@@ -57,7 +57,7 @@
             </div>
         </div>
         
-        <div class="well">
+        <div class="container well">
             <div class="row" ng-show="isupdate">
                 <input type="text" ng-model="oldperson.name" class="form-control col-4" style="margin:1%" autofocus required/>
                 <input type="text" ng-model="oldperson.age" class="form-control col-4" style="margin:1%" required/>
@@ -66,12 +66,12 @@
             </div>
         </div>
         <hr/>
-        <div class="well">
+        <div class="container well">
             <div class="row" ng-show="listempty">
                 <p class="form-control col" style="text-align-last:center; color:grey">List Empty</p>
             </div>
         </div>
-        <div class="well">
+        <div class="container well">
             <div class="row" ng-hide="listempty" ng-repeat="x in listpersons" id="div{{x.id}}">
                 <p class=" form-control col-4" style="margin:1%">{{x.name}}</p>
                 <p class=" form-control col-4" style="margin:1%">{{x.age}}</p>
