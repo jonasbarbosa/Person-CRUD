@@ -31,8 +31,9 @@
                 />
             </div>
         </div>
+        <hr/>
         <div class="container well">
-            <div hidden ng-show="listempty" class="row">
+            <div ng-show="listempty" class="row">
                 <p class="form-control col" style="text-align-last:center; color:grey">List Empty</p>
             </div>
             <div class="row" ng-hide="listempty" ng-repeat="x in listpersons" id="div{{x.id}}">
