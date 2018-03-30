@@ -36,6 +36,8 @@
                         </form:form>
                     </c:if>
                 </div>
+                
+                <hr/>
 
                 <div class="container well">
                     <c:if test="${!empty list}">
