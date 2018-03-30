@@ -38,11 +38,11 @@
                 <div class="container well">
                     <c:if test="${!empty list}">
                         <c:forEach items="${list}" var="x">
-                            <div class="form-inline row">
-                                <p style="margin: 1%" class="form-control col-sm-3">${x.name}</p>
-                                <p style="margin: 1%" class="form-control col-sm-3">${x.age}</p>
-                                <button style="margin: 1%" onclick="location.href='/edit/${x.id}';" class="btn btn-warning btn-md col-sm-3">Edit</button>
-                                <button style="margin: 1%" onclick="location.href='/delete/${x.id}';" class="btn btn-danger btn-md col-sm-3">Delete</button>
+                            <div class="row">
+                                <p style="margin: 1%" class="col-sm-3">${x.name}</p>
+                                <p style="margin: 1%" class="col-sm-3">${x.age}</p>
+                                <button style="margin: 1%" onclick="location.href='/edit/${x.id}';" class="btn btn-warning btn-md col-sm-2">Edit</button>
+                                <button style="margin: 1%" onclick="location.href='/delete/${x.id}';" class="btn btn-danger btn-md col-sm-2">Delete</button>
                             </div>
                         </c:forEach>
                     </c:if>
