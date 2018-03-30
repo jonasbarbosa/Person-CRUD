@@ -7,9 +7,11 @@
                 <title>
                     Person CRUD - GNSMK
                 </title>
-                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+                
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
             </head>
 
             <body>
@@ -17,9 +19,9 @@
                     <c:if test="${empty newPerson}">
                         <form:form action="/add" method="post">
                             <div class="form-inline">
-                                <input style="width:35%; margin: 1%;" type="text" name="name" class="form-control" placeholder="Person Name" autofocus required/>
-                                <input style="width:35%; margin: 1%;" type="text" name="age" class="form-control" placeholder="Person Age" required/>
-                                <input style="width:23%; margin: 1%;" type="submit" class="btn btn-success btn-md" value="Add Person" />
+                                <input style="margin: 1%" type="text" name="name" class="form-control" placeholder="Person Name" autofocus required/>
+                                <input style="margin: 1%" type="text" name="age" class="form-control" placeholder="Person Age" required/>
+                                <input style="margin: 1%" type="submit" class="btn btn-success btn-md" value="Add Person" />
                             </div>
                         </form:form>
                     </c:if>
@@ -27,9 +29,9 @@
                         <form:form action="/update" method="post">
                             <div class="form-inline">
                                 <input type="hidden" name="id" value=${newPerson.id} />
-                                <input style="width:35%; margin: 1%;" type="text" name="name" class="form-control" value="${newPerson.name}" autofocus required/>
-                                <input style="width:35%; margin: 1%;" type="text" name="age" class="form-control" value="${newPerson.age}" required/>
-                                <input style="width:23%; margin: 1%;" type="submit" class="btn btn-primary btn-md" value="Update Person" />
+                                <input style="margin: 1%" type="text" name="name" class="form-control" value="${newPerson.name}" autofocus required/>
+                                <input style="margin: 1%" type="text" name="age" class="form-control" value="${newPerson.age}" required/>
+                                <input style="margin: 1%" type="submit" class="btn btn-primary btn-md" value="Update Person" />
                             </div>
                         </form:form>
                     </c:if>
