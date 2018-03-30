@@ -11,6 +11,39 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script>
+        angular.module('myApp', []).controller('myCtrl', function ($scope, $http) {
+            $scope.isupdate = false;
+            $http.get("/r/getAll/").then(function (response) {
+                $scope.listempty = (($scope.listpersons = response.data).length == 0);
+            });
+            $scope.add = function () {
+                $http.post("/r/add", ({
+                    name: $scope.uname, age: $scope.uage
+                }));
+                location.reload();
+            }
+            $scope.edit = function (id) {
+                $http.get("/r/getOne/" + id).then(function (response) {
+                    $scope.isupdate = response;
+                    $scope.oldperson = response.data;
+                });
+            }
+            $scope.update = function (id) {
+                $http.post("/r/update", ({
+                    name: $scope.oldperson.name,
+                    age: $scope.oldperson.age,
+                    id: $scope.oldperson.id
+                }), function (response) {
+                    $scope.isupdate = false;
+                });
+                location.reload();
+            }
+            $scope.delete = function (id) {
+                $http.get("/r/delete/" + id).then(location.reload());
+            }
+        });
+</script>
 </head>
 
 <body>
@@ -33,50 +66,16 @@
         </div>
         <hr/>
         <div class="container well">
-            <div ng-show="listempty" class="row">
+            <div class="row" ng-show="listempty">
                 <p class="form-control col" style="text-align-last:center; color:grey">List Empty</p>
             </div>
             <div class="row" ng-hide="listempty" ng-repeat="x in listpersons" id="div{{x.id}}">
-                <p class=" form-control col-4" style="margin:1%; width:35%">{{x.name}}</p>
-                <p class=" form-control col-4" style="margin:1%; width:35%">{{x.age}}</p>
-                <input type="button" style="margin:1%; width:10%" ng-click="edit(x.id)" value="Edit" class="btn btn-warning btn-md col" />
-                <input type="button" style="margin:1%; width:10%" ng-click="delete(x.id)" value="Delete" class="btn btn-danger btn-md col" />
+                <p class=" form-control col-4" style="margin:1%">{{x.name}}</p>
+                <p class=" form-control col-4" style="margin:1%">{{x.age}}</p>
+                <input type="button" style="margin:1%" ng-click="edit(x.id)" value="Edit" class="btn btn-warning btn-md col" />
+                <input type="button" style="margin:1%" ng-click="delete(x.id)" value="Delete" class="btn btn-danger btn-md col" />
             </div>
         </div>
     </div>
 </body>
-<script>
-    angular.module('myApp', []).controller('myCtrl', function ($scope, $http) {
-        $scope.isupdate = false;
-        $http.get("/r/getAll/").then(function (response) {
-            $scope.listempty = (($scope.listpersons = response.data).length == 0);
-        });
-        $scope.add = function () {
-            $http.post("/r/add", ({
-                name: $scope.uname, age: $scope.uage
-            }));
-            location.reload();
-        }
-        $scope.edit = function (id) {
-            $http.get("/r/getOne/" + id).then(function (response) {
-                $scope.isupdate = response;
-                $scope.oldperson = response.data;
-            });
-        }
-        $scope.update = function (id) {
-            $http.post("/r/update", ({
-                name: $scope.oldperson.name,
-                age: $scope.oldperson.age,
-                id: $scope.oldperson.id
-            }), function (response) {
-                $scope.isupdate = false;
-            });
-            location.reload();
-        }
-        $scope.delete = function (id) {
-            $http.get("/r/delete/" + id).then(location.reload());
-        }
-    });
-</script>
-
 </html>
