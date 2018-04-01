@@ -1,7 +1,8 @@
-.gitignore
-.classpath
-.project
+.mvn/*
 .settings/*
 .vscode/*
-.mvn/*
 target/*
+
+.classpath
+.gitignore
+.project
