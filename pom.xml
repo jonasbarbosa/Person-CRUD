@@ -28,12 +28,6 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
-			<!-- to use CrudRepository -->
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-rest</artifactId>
-			<version>1.2.5.RELEASE</version>
-		</dependency>
-		<dependency>
 			<!-- to use JPA repository -->
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -51,12 +45,6 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>2.6.1</version>
 			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<!-- POJO class annotations -->
-			<groupId>javax.persistence</groupId>
-			<artifactId>persistence-api</artifactId>
-			<version>1.0.2</version>
 		</dependency>
 		<dependency>
 			<!-- H2 data base -->
@@ -81,17 +69,11 @@
 			<artifactId>tomcat-embed-jasper</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		<!--to run on Java 9  -->
 		<dependency>
-			<!-- spring aplication testing -->
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.spotify/dockerfile-maven-plugin -->
-		<dependency>
-			<groupId>com.spotify</groupId>
-			<artifactId>dockerfile-maven-plugin</artifactId>
-			<version>1.4.0</version>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.3.0</version>
 		</dependency>
 	</dependencies>
 	<build>
