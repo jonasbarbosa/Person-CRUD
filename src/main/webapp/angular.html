@@ -48,37 +48,53 @@
 </head>
 
 <body>
-    <div ng-app="myApp" ng-controller="myCtrl">
-        <div class="container well">
-            <div class="row" ng-hide="isupdate">
-                <input type="text" ng-model="uname" class="form-control col-4" placeholder="Person Name" style="margin:1%" autofocus required/>
-                <input type="text" ng-model="uage" class="form-control col-4" placeholder="Person Age" style="margin:1%" required/>
-                <input type="button" ng-click="add()" class="btn btn-success btn-md col" style="margin:1%" value="Add Person" />
+    <div ng-app="myApp" ng-controller="myCtrl" class="container">
+
+        <div class="row" ng-hide="isupdate">
+            <div class="col-lg-4">
+                <input type="text" ng-model="uname" class="form-control" placeholder="Person Name" style="margin:1%" autofocus required/>
+            </div>
+            <div class="col-sm-4">
+                <input type="text" ng-model="uage" class="form-control" placeholder="Person Age" style="margin:1%" required/>
+            </div>
+            <div class="col">
+                <input type="button" ng-click="add()" class="btn btn-success col" style="margin:1%" value="Add Person" />
             </div>
         </div>
 
-        <div class="container well">
-            <div class="row" ng-show="isupdate">
-                <input type="text" ng-model="oldperson.name" class="form-control col-4" style="margin:1%" autofocus required/>
-                <input type="text" ng-model="oldperson.age" class="form-control col-4" style="margin:1%" required/>
-                <input type="button" style="margin:1%" ng-click="update(oldperson.id)" class="btn btn-primary btn-md col" value="Update Person"
+        <div class="row" ng-show="isupdate">
+            <div class="col-lg-4">
+                <input type="text" ng-model="oldperson.name" class="form-control" style="margin:1%" autofocus required/>
+            </div>
+            <div class="col-lg-4">
+                <input type="text" ng-model="oldperson.age" class="form-control" style="margin:1%" required/>
+            </div>
+            <div class="col">
+                <input type="button" style="margin:1%" ng-click="update(oldperson.id)" class="btn btn-primary col" value="Update Person"
                 />
             </div>
         </div>
         <hr/>
-        <div class="container well">
-            <div class="row" ng-show="listempty">
+        <div class="row" ng-show="listempty">
+            <div class="col">
                 <p class="form-control col" style="text-align-last:center; color:grey">List Empty</p>
             </div>
         </div>
-        <div class="container well">
-            <div class="row" ng-hide="listempty" ng-repeat="x in listpersons" id="div{{x.id}}">
-                <p class=" form-control col-4" style="margin:1%">{{x.name}}</p>
-                <p class=" form-control col-4" style="margin:1%">{{x.age}}</p>
-                <input type="button" style="margin:1%" ng-click="edit(x.id)" value="Edit" class="btn btn-warning btn-md col" />
-                <input type="button" style="margin:1%" ng-click="delete(x.id)" value="Delete" class="btn btn-danger btn-md col" />
+        <div class="row" ng-hide="listempty" ng-repeat="x in listpersons" id="div{{x.id}}">
+            <div class="col-lg-4">
+                <p class=" form-control" style="margin:1%">{{x.name}}</p>
+            </div>
+            <div class="col-lg-4">
+                <p class=" form-control" style="margin:1%">{{x.age}}</p>
+            </div>
+            <div class="col">
+                <input type="button" style="margin:1%" ng-click="edit(x.id)" value="Edit" class="btn btn-warning col" />
+            </div>
+            <div class="col">
+                <input type="button" style="margin:1%" ng-click="delete(x.id)" value="Delete" class="btn btn-danger col" />
             </div>
         </div>
     </div>
 </body>
+
 </html>
