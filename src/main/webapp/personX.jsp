@@ -15,44 +15,71 @@
             </head>
 
             <body>
-                <div class="container well">
+                <div class="container">
                     <c:if test="${empty newPerson}">
                         <form:form action="/add" method="post">
                             <div class="row">
-                                <input style="margin: 1%" type="text" name="name" class="form-control col-4" placeholder="Person Name" autofocus required/>
-                                <input style="margin: 1%" type="text" name="age" class="form-control col-4" placeholder="Person Age" required/>
-                                <input style="margin: 1%" type="submit" class="btn btn-success btn-md col" value="Add Person" />
+                                <div class="col-lg-4">
+                                    <input style="margin: 1%" type="text" name="name" class="form-control" placeholder="Person Name" autofocus required/>
+                                </div>
+                                <div class="col-lg-4">
+                                    <input style="margin: 1%" type="text" name="age" class="form-control" placeholder="Person Age" required/>
+                                </div>
+                                <div class="col">
+                                    <input style="margin: 1%" type="submit" class="btn btn-success col" value="Add Person" />
+                                </div>
                             </div>
                         </form:form>
                     </c:if>
+                    
                     <c:if test="${!empty newPerson}">
                         <form:form action="/update" method="post">
                             <div class="row">
-                                <input type="hidden" name="id" value=${newPerson.id} />
-                                <input style="margin: 1%" type="text" name="name" class="form-control col-4" value="${newPerson.name}" autofocus required/>
-                                <input style="margin: 1%" type="text" name="age" class="form-control col-4" value="${newPerson.age}" required/>
-                                <input style="margin: 1%" type="submit" class="btn btn-primary btn-md col" value="Update Person" />
+                                <div>
+                                    <input type="hidden" name="id" value=${newPerson.id} />
+                                </div>
+                                <div class="col-lg-4">
+                                    <input style="margin: 1%" type="text" name="name" class="form-control" value="${newPerson.name}" autofocus required/>
+                                </div>
+                                <div class="col-lg-4">
+                                    <input style="margin: 1%" type="text" name="age" class="form-control" value="${newPerson.age}" required/>
+                                </div>
+                                <div class="col">
+                                    <input style="margin: 1%" type="submit" class="btn btn-primary col" value="Update Person" />
+                                </div>
                             </div>
                         </form:form>
                     </c:if>
-                </div>
 
-                <hr/>
+                    <hr/>
 
-                <div class="container well">
                     <c:if test="${!empty list}">
                         <c:forEach items="${list}" var="x">
                             <div class="row">
-                                <p style="margin: 1%" class="form-control col-4">${x.name}</p>
-                                <p style="margin: 1%" class="form-control col-4">${x.age}</p>
-                                <button style="margin: 1%" onclick="location.href='/edit/${x.id}';" class="btn btn-warning btn-md col">Edit</button>
-                                <button style="margin: 1%" onclick="location.href='/delete/${x.id}';" class="btn btn-danger btn-md col">Delete</button>
+                                <div class="col-lg-4">
+                                    <p style="margin: 1%" class="form-control">${x.name}</p>
+                                </div>
+                                <div class="col-lg-4">
+                                    <p style="margin: 1%" class="form-control">${x.age}</p>
+                                </div>
+                                <div class="col">
+                                    <button style="margin: 1%" onclick="location.href='/edit/${x.id}';" class="btn btn-warning col">Edit</button>
+                                </div>
+                                <div class="col">
+                                    <button style="margin: 1%" onclick="location.href='/delete/${x.id}';" class="btn btn-danger col">Delete</button>
+                                </div>
                             </div>
                         </c:forEach>
                     </c:if>
+                    
                     <c:if test="${empty list}">
-                        <p class="form-control col" style="text-align-last:center; color:grey">List Empty</p>
+                        <div class="row">
+                            <div class="col">
+                                <p class="form-control col" style="text-align-last:center; color:grey">List Empty</p>
+                            </div>
+                        </div>
                     </c:if>
+
                 </div>
             </body>
 
