@@ -1,9 +1,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
         <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-            <html>
+            <!DOCTYPE html>
+            <html lang="en">
 
             <head>
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
                 <title>
                     Person CRUD - GNSMK
                 </title>
@@ -15,7 +18,7 @@
             </head>
 
             <body>
-                <div class="container">
+                <div class="container-fluid">
                     <c:if test="${empty newPerson}">
                         <form:form action="/add" method="post">
                             <div class="row">
@@ -31,7 +34,7 @@
                             </div>
                         </form:form>
                     </c:if>
-                    
+
                     <c:if test="${!empty newPerson}">
                         <form:form action="/update" method="post">
                             <div class="row">
@@ -71,7 +74,7 @@
                             </div>
                         </c:forEach>
                     </c:if>
-                    
+
                     <c:if test="${empty list}">
                         <div class="row">
                             <div class="col">
