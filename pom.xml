@@ -56,7 +56,7 @@
 			<!--for heroku's postgre db-->
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-    			<version>42.2.2</version>
+			<version>42.2.2</version>
 		</dependency>
 		<dependency>
 			<!-- custom html tags in jsp pages -->
@@ -82,6 +82,18 @@
 				<!-- for running this app -->
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<!-- for docker support -->
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>1.3.6</version>
+				<configuration>
+					<repository>nagasaig9/person-crud</repository>
+					<buildArgs>
+						<JAR_FILE>target/Person-CRUD-Beta.jar</JAR_FILE>
+					</buildArgs>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
