@@ -78,7 +78,7 @@
                     <c:if test="${empty list}">
                         <div class="row">
                             <div class="col">
-                                <p class="form-control col" style="text-align-last:center; color:grey">List Empty</p>
+                                <p class="form-control col" style="text-align:center; color:grey">List Empty</p>
                             </div>
                         </div>
                     </c:if>
