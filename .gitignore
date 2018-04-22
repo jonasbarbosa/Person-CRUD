@@ -1,9 +1,0 @@
-.mvn/*
-.settings/*
-.vscode/*
-target/*
-
-.classpath
-.gitignore
-.project
-src/main/resources/application.properties
