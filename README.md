@@ -11,7 +11,7 @@ This is made both using JSP & AngularJS
 [click here](person-crud.herokuapp.com) for JSP based site
 
 ### Screenshot
-![Mobile Screenshot](Person-CRUD_Screenshot.jpg=375x500)
+<img src="Person-CRUD_Screenshot.jpg" height="500"/>
 
 - - - -
 mail me @ nagasai.g9@gmail.com
