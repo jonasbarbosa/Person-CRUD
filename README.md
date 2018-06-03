@@ -2,9 +2,9 @@
 
 [![Join the chat at https://gitter.im/Person-CRUD/Lobby](https://badges.gitter.im/Person-CRUD/Lobby.svg)](https://gitter.im/Person-CRUD/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-This code for a sample [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) application using Spring-Boot, JSP & AngularJS
+This code for a sample [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) application using `Spring-Boot`, `JSP` & `AngularJS`
 
-This project is hosted on heroku. Link [here](http://person-crud.herokuapp.com/)
+This project is hosted on `heroku`. Link [here](http://person-crud.herokuapp.com/)
 
 ### Dependencies
 * [Spring-Boot](https://projects.spring.io/spring-boot/)
