@@ -1,29 +1,16 @@
 # Person-CRUD
 
-[![Join the chat at https://gitter.im/Person-CRUD/Lobby](https://badges.gitter.im/Person-CRUD/Lobby.svg)](https://gitter.im/Person-CRUD/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+This code for a sample `CRUD` application using `Spring-Boot`, & `AngularJS`
 
-This code for a sample [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) application using `Spring-Boot`, `JSP` & `AngularJS`
-
-This project is hosted on `heroku`. Link [here](http://person-crud.herokuapp.com/)
+This project is hosted on `heroku`. Link [here](http://person-crud.herokuapp.com/r)
 
 ### Dependencies
-* [Spring-Boot](https://projects.spring.io/spring-boot/)
-* [JSP](http://www.oracle.com/technetwork/java/javaee/jsp/index.html)
-* [AngularJS](https://angularjs.org/)
-* [Maven](https://maven.apache.org/)
-* [Tomcat Server](http://tomcat.apache.org/)
-* [postgre db](https://www.postgresql.org/)
-* [h2 in-memory db](http://www.h2database.com/)
 
-### Usage
-This site's Front end has both JSP & AngularJS variations
-
-[AngularJS based site](http://person-crud.herokuapp.com/r)
-
-[JSP based site](http://person-crud.herokuapp.com/)
-
-### Screenshot
-<img src="Person-CRUD_Screenshot.jpg" alt="Mobile Screenshot" height="500"/>
+- [Spring-Boot](https://projects.spring.io/spring-boot/)
+- [AngularJS](https://angularjs.org/)
+- [Postgre DB](https://www.postgresql.org/)
+- [Maven](https://maven.apache.org/)
 
 - - - -
+
 mail me @ nagasai.g9@gmail.com
