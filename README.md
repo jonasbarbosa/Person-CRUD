@@ -13,4 +13,4 @@ This project is hosted on `heroku`. Link [here](http://person-crud.herokuapp.com
 
 - - - -
 
-mail me @ nagasai.g9@gmail.com
+contact me @ nagasai.g9@gmail.com
