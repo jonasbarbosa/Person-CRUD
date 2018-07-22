@@ -17,11 +17,13 @@ public class PersonRestController {
         return new ModelAndView("angular.html");
     }
 
+    @CrossOrigin
     @RequestMapping(value = "/r/getAll", method = RequestMethod.GET)
     public List<Person> getAll() {
         return repo.findAll();
     }
 
+    @CrossOrigin
     @RequestMapping(value = "/r/getOne/{id}", method = RequestMethod.GET)
     public Person getOne(@PathVariable Integer id) {
         return repo.findOne(id);
