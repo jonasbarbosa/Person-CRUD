@@ -1,6 +1,6 @@
 # Person-CRUD
 
-This code for a sample `CRUD` application using `Spring-Boot`, & `AngularJS`
+This is code for a simple `CRUD` application using `Spring-Boot` & `AngularJS`
 
 This project is hosted on `heroku`. Link [here](http://person-crud.herokuapp.com/r)
 
@@ -8,9 +8,10 @@ This project is hosted on `heroku`. Link [here](http://person-crud.herokuapp.com
 
 - [Spring-Boot](https://projects.spring.io/spring-boot/)
 - [AngularJS](https://angularjs.org/)
-- [Postgre DB](https://www.postgresql.org/)
+- [PostgreSQL DB](https://www.postgresql.org/)
 - [Maven](https://maven.apache.org/)
+- [and lot of time](/#)
 
-- - - -
+- - -
 
 contact me @ nagasai.g9@gmail.com
