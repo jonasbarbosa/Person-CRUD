@@ -10,4 +10,4 @@ This project is hosted on `heroku`. Link [here](http://person-crud.herokuapp.com
 - [AngularJS](https://angularjs.org/)
 - [PostgreSQL DB](https://www.postgresql.org/)
 - [Maven](https://maven.apache.org/)
-- [and lot of time](/#)
+- and lot of time
