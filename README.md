@@ -11,7 +11,3 @@ This project is hosted on `heroku`. Link [here](http://person-crud.herokuapp.com
 - [PostgreSQL DB](https://www.postgresql.org/)
 - [Maven](https://maven.apache.org/)
 - [and lot of time](/#)
-
-- - -
-
-contact me @ nagasai.g9@gmail.com
